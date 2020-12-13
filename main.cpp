@@ -2,14 +2,16 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include "ColorBlindTest.h"
+
 using namespace std;
-//function declarations
+
 char userChoice(vector<string>);
 vector<string> addColor(vector<string>);
-void showColors(vector<string>);
-void colorTest(int &a);
+
 int main()
 {
+  ColorBlindTest myColors;
   vector<string> list;
   char choice;
   cout << "Hello, what would you like to do?\n";
@@ -19,20 +21,20 @@ int main()
     if (choice == 'F'|| choice == 'f')
     {
       list = addColor(list);
-      showColors(list);
+      myColors.showColors(list);
     }
     if (choice == 'T' || choice == 't')
     {
       int num;
       cout << "Open colortest.png, and type in the number you see.\n";
       cin >> num;
-      colorTest(num);
+      myColors.colorTest(num);
     }
 
   }while(choice != 'Q' && choice != 'q');
+
 return 0;
 }
-//user menu that determines what the program will do
 char userChoice(vector<string>list)
 {
   char choice;
@@ -70,31 +72,3 @@ vector <string> addColor(vector <string> add)
   return add;
   }
 //shows the list of colors, excluding unsuitable colors entered.
-void showColors(vector<string>list)
-{
-  if (list.empty() == true)
-  {
-    cout << "No colors added" << endl;
-  }
-  else
-  {
-    cout << "Suitable colors:" << endl;
-    for(int i = 0; i < list.size(); i++)
-    {
-      cout << list[i] << endl;
-    }
-  }
-  cout << endl;
-}
-//colorblind test function
-void colorTest(int &a)
-{
-  if (a == 74)
-  {
-    cout << "Correct. You are not colorblind\n";
-  }
-  else
-  {
-    cout << "You may be colorblind.\n";
-  }
-}
